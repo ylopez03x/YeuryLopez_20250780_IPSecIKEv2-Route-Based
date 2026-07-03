@@ -3,6 +3,14 @@
 
 ---
 
+## Video de demostración
+
+[![Ver en YouTube](https://img.shields.io/badge/YouTube-Ver%20Video-red?logo=youtube)](https://youtu.be/xZsyZ1Rm1M0)
+
+**Enlace directo:** https://youtu.be/xZsyZ1Rm1M0
+
+---
+
 ## 1. Objetivo
 Configurar una VPN Site-to-Site basada en enrutamiento utilizando IPSec con IKEv2. Se crea una interfaz virtual Tunnel0 protegida con un perfil IKEv2, y se enruta el tráfico a través de esa interfaz sin ACLs.
 
@@ -10,11 +18,8 @@ Configurar una VPN Site-to-Site basada en enrutamiento utilizando IPSec con IKEv
 
 ## 2. Topología
 
-```
-[Linux1] --- [SW1] --- [R1] --- [ISP] --- [R2] --- [SW2] --- [Linux2]
-```
 
-> 📸 **SCREENSHOT:** Insertar captura de la topología completa en EVE-NG
+> <img width="940" height="589" alt="image" src="https://github.com/user-attachments/assets/33e4a6d6-8c70-4070-903e-f996efdcc2ee" />
 
 ---
 
@@ -52,7 +57,6 @@ Configurar una VPN Site-to-Site basada en enrutamiento utilizando IPSec con IKEv
 
 ### 5.1 Configuración R1
 
-> 📸 **SCREENSHOT:** Insertar captura del `show running-config` de R1 mostrando ikev2 profile, crypto ipsec profile y Tunnel0
 
 ```
 crypto ipsec profile VPN-PROFILE
@@ -68,7 +72,6 @@ ip route 192.168.80.0 255.255.255.0 172.16.78.2
 
 ### 5.2 Configuración R2
 
-> 📸 **SCREENSHOT:** Insertar captura del `show running-config` de R2
 
 ---
 
@@ -80,7 +83,8 @@ Ejecutar en R1:
 ```
 show crypto ikev2 sa
 ```
-> 📸 **SCREENSHOT:** Insertar captura mostrando estado **READY**
+> <img width="861" height="439" alt="image" src="https://github.com/user-attachments/assets/7dde606e-2d97-4bcb-b462-77276def1966" />
+
 
 ### 6.2 Estado Tunnel0
 
@@ -88,7 +92,8 @@ Ejecutar en R1:
 ```
 show interface tunnel0
 ```
-> 📸 **SCREENSHOT:** Insertar captura mostrando `Tunnel0 is up, line protocol is up` y `Tunnel protection via IPSec (profile "VPN-PROFILE")`
+> <img width="940" height="258" alt="image" src="https://github.com/user-attachments/assets/eb58444c-d51e-4f2f-965f-862eaafc8244" />
+
 
 ### 6.3 Estado IPSec SA
 
@@ -96,7 +101,8 @@ Ejecutar en R1:
 ```
 show crypto ipsec sa
 ```
-> 📸 **SCREENSHOT:** Insertar captura mostrando `#pkts encaps` y `#pkts decaps` con valores mayores a 0
+> <img width="940" height="413" alt="image" src="https://github.com/user-attachments/assets/cb06f010-d7c1-4b6a-be37-9d2c51f0809d" />
+
 
 ### 6.4 Demostración de conectividad
 
@@ -104,15 +110,7 @@ Ejecutar en Linux1:
 ```
 ping -c 4 192.168.80.2
 ```
-> 📸 **SCREENSHOT:** Insertar captura del ping exitoso
+> <img width="940" height="220" alt="image" src="https://github.com/user-attachments/assets/88f54cd4-bb5e-46bf-b150-41883783fbb7" />
+
 
 ---
-
-## 7. Archivos del repositorio
-
-| Archivo | Descripción |
-|---|---|
-| `YeuryLopez_20250780_Script_P5.txt` | Script de configuración |
-| `YeuryLopez_20250780_Informe_P5.pdf` | Documentación técnica en PDF |
-| `YeuryLopez_20250780_Links_P5.txt` | Enlace al video |
-| `README.md` | Este archivo |
